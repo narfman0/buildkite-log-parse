@@ -30,6 +30,8 @@ python -m buildkite_log_parse.main --organization org-1 \
     --group 1
 ```
 
+Optionally add the `--debug` param to dump response logs
+
 Development
 -----------
 

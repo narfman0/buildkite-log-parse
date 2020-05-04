@@ -26,13 +26,22 @@ def extract_job_string(job_log, regex, group=None):
 def main():
     parser = Parser()
     builds_response = builds(
-        parser.build_state(), parser.organization(), parser.pipeline(), parser.token()
+        parser.build_state(),
+        parser.organization(),
+        parser.pipeline(),
+        parser.token(),
+        parser.debug(),
     )
     build, job = get_build_and_job(
         parser.job(), builds_response, parser.build_message(),
     )
     log = build_job_log(
-        build, job, parser.organization(), parser.pipeline(), parser.token()
+        build,
+        job,
+        parser.organization(),
+        parser.pipeline(),
+        parser.token(),
+        parser.debug(),
     )
     print(extract_job_string(log, parser.regex(), parser.group()))
 

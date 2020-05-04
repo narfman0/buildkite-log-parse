@@ -15,6 +15,7 @@ class Parser:
         parser.add_argument("--build_state", help="Build state, e.g. running")
         parser.add_argument("--build_message", help="Build message")
         parser.add_argument("--job", help="Job name")
+        parser.add_argument("--debug", help="Dump response logs", action="store_true")
         self.args = parser.parse_args()
 
     def group(self):
@@ -42,3 +43,6 @@ class Parser:
 
     def job(self):
         return self.args.job or os.environ["JOB"]
+
+    def debug(self):
+        return self.args.debug or os.environ.get("DEBUG")
