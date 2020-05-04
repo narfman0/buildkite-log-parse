@@ -21,4 +21,7 @@ setup(
     zip_safe=True,
     install_requires=["requests"],
     test_suite="tests",
+    entry_points={
+        "console_scripts": ["buildkite-log-parse=buildkite_log_parse.main:main"]
+    },
 )

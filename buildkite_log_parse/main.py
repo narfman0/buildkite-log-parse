@@ -1,6 +1,7 @@
 import re
 
-from buildkite_log_parse import fetch, parser, util
+from buildkite_log_parse.fetch import builds, build_job_log
+from buildkite_log_parse.parser import Parser
 
 
 def get_build_and_job(job_name, builds_response, build_message):
@@ -22,19 +23,19 @@ def extract_job_string(job_log, regex, group=None):
     return match.group()
 
 
-def run():
-    parser = parser.Parser()
-    builds_response = fetch.builds(
+def main():
+    parser = Parser()
+    builds_response = builds(
         parser.build_state(), parser.organization(), parser.pipeline(), parser.token()
     )
     build, job = get_build_and_job(
         parser.job(), builds_response, parser.build_message(),
     )
-    log = fetch.build_job_log(
+    log = build_job_log(
         build, job, parser.organization(), parser.pipeline(), parser.token()
     )
-    return extract_job_string(log, parser.regex(), parser.group())
+    print(extract_job_string(log, parser.regex(), parser.group()))
 
 
 if __name__ == "__main__":
-    print(run())
+    main()
