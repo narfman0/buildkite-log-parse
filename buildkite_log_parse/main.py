@@ -13,10 +13,12 @@ def bastion_build_and_job(job_name, builds_response, build_message):
     return None
 
 
-def extract_bastion_string(job_log, regex):
+def extract_bastion_string(job_log, regex, group=None):
     """ Extract the ssh string to connect to from log """
     matcher = re.compile(regex, re.MULTILINE)
-    match = matcher.match(job_log)
+    match = matcher.search(job_log)
+    if group is not None:
+        return match.group(group)
     return match.group()
 
 
@@ -31,4 +33,4 @@ if __name__ == "__main__":
     log = fetch.build_job_log(
         build, job, parser.organization(), parser.pipeline(), parser.token()
     )
-    extract_bastion_string(log, parser.regex())
+    print(extract_bastion_string(log, parser.regex(), parser.group()))

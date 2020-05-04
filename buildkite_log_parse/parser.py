@@ -7,6 +7,7 @@ class Parser:
         parser = argparse.ArgumentParser(
             description="Extract string from buildkite job"
         )
+        parser.add_argument("--group", help="Regex group index, e.g. 1", type=int)
         parser.add_argument("--organization", help="Organization name, e.g. org-1")
         parser.add_argument("--pipeline", help="Pipeline slug")
         parser.add_argument("--token", help="Buildkite token")
@@ -15,6 +16,11 @@ class Parser:
         parser.add_argument("--build_message", help="Build message")
         parser.add_argument("--job", help="Job name")
         self.args = parser.parse_args()
+
+    def group(self):
+        if self.args.group is None:
+            return os.environ.get("GROUP")
+        return self.args.group
 
     def organization(self):
         return self.args.organization or os.environ["ORGANIZATION"]
