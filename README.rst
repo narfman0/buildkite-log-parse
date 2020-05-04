@@ -26,7 +26,8 @@ python -m buildkite_log_parse.main --organization org-1 \
     --regex "Access it for the next hour by running ssh (.*)" \
     --build_message "Common bastion.*" \
     --build_state "running" \
-    --job "Run Server"
+    --job "Run Server" \
+    --group 1
 ```
 
 Development
