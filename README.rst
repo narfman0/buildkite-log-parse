@@ -19,16 +19,16 @@ Install via pip::
 Usage
 -----
 
-```
-python -m buildkite_log_parse.main --organization org-1 \
-    --pipeline bastion-server \
-    --token qwertyuiopasdfghjklzxcvbnm1234567890asda \
-    --regex "Access it for the next hour by running ssh (.*)" \
-    --build_message "Common bastion.*" \
-    --build_state "running" \
-    --job "Run Server" \
-    --group 1
-```
+Example::
+
+    buildkite-log-parse --organization org-1 \
+        --pipeline bastion-server \
+        --token qwertyuiopasdfghjklzxcvbnm1234567890asda \
+        --regex "Access it for the next hour by running ssh (.*)" \
+        --build_message "Common bastion.*" \
+        --build_state "running" \
+        --job "Run Server" \
+        --group 1
 
 Optionally add the `--debug` param to dump response logs
 
