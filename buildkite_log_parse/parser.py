@@ -11,7 +11,7 @@ class Parser:
         parser.add_argument("--pipeline", help="Pipeline slug")
         parser.add_argument("--token", help="Buildkite token")
         parser.add_argument("--regex", help="Regex to search in logs")
-        parser.add_argument("--build", help="Build name")
+        parser.add_argument("--build", help="Build message")
         parser.add_argument("--job", help="Job name")
         parser.add_argument("--state", help="Build state, e.g. running")
         self.args = parser.parse_args()
