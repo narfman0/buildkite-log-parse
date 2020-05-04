@@ -11,9 +11,9 @@ class Parser:
         parser.add_argument("--pipeline", help="Pipeline slug")
         parser.add_argument("--token", help="Buildkite token")
         parser.add_argument("--regex", help="Regex to search in logs")
-        parser.add_argument("--build", help="Build message")
+        parser.add_argument("--build_state", help="Build state, e.g. running")
+        parser.add_argument("--build_message", help="Build message")
         parser.add_argument("--job", help="Job name")
-        parser.add_argument("--state", help="Build state, e.g. running")
         self.args = parser.parse_args()
 
     def organization(self):
@@ -28,11 +28,11 @@ class Parser:
     def regex(self):
         return self.args.regex or os.environ["REGEX"]
 
-    def build(self):
-        return self.args.build or os.environ["BUILD"]
+    def build_message(self):
+        return self.args.build_message or os.environ["BUILD_MESSAGE"]
+
+    def build_state(self):
+        return self.args.build_state or os.environ["BUILD_STATE"]
 
     def job(self):
         return self.args.job or os.environ["JOB"]
-
-    def state(self):
-        return self.args.state or os.environ["STATE"]
